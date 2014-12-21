@@ -31,6 +31,7 @@ varnames <- gsub("-std\\(\\)","Std",varnames)
 varnames <- c("Activity","Subject",varnames)
 names(data) <- varnames
 data$Activity <- factor(data$Activity,level=1:6,labels=c("Walk","Walk_Up","Walk_Down","Sit","Stand","Lay"))
+write.table(data,"data.txt",row.name=FALSE)
 
 #Create the second data second required in the assignment
 data_sum <- aggregate(data[,3:dim(data)[2]],by=list(Acttivity=data$Activity,subject=data$Subject),mean)
