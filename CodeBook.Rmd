@@ -1,0 +1,98 @@
+---
+title: "Code Book"
+author: "Alex Noll"
+date: "Tuesday, December 09, 2014"
+output: html_document
+---
+##Data source
+The data come from the UCI Machine learning repository; a zip file can be found on
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+##Data Set Information
+*(This section is copied from http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)*
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. 
+
+##Operations performed on raw data
+Firstly, both the training data ("/train/X\_train.txt") and the test data ("/test/\_test.txt") were merged with their respective activity labeling ("/train/y\_train.txt" and "/test/y\_test.txt",respectively). These merged data sets were combined into a single data set containing both training and test data. Only the variable indicating the activity and the variables containing the "mean()" and "std()" measurements were kept. Not all variables containing the expression "mean" were kept since "gravityMean", "tBodyAccMean", "tBodyAccJerkMean", "tBodyGyroMean" and "tBodyGyroJerkMean" are not independent quantities; they are computed from other quantities. The activities, initially labeled by numbers from 1 to 6 were relabelled (to be described more explicitly later). This data frame is called "data".
+
+Finlly, a second data frame ("data\_sum") was created containing the information about the mean of the variables of the data frame "data" grouped by the variable activity.  This second data frame was written to a file "data\_sum.txt".
+
+##Description of variables of "data"
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions. 
+
+All variables are unit-free (divided by the respective absolute value of the maximum); thus they lie in the interval [-1,1].
+
+tBodyAccMean-XYZ: Mean Body linear acceleration in XYZ direction in time domain  
+tBodyAccStd-XYZ: Standard deviation of linear acceleration in XYZ direction in time domain 
+
+tGravityAccMean-XYZ: Mean gravitational acceleration in XYZ direction in time domain  
+tGravityAccStd-XYZ: Standard deviation of gravitational acceleration in XYZ direction in time domain  
+
+tBodyAccJerkMean-XYZ: Mean Body Jerk signal in XYZ direction in time domain   
+tBodyAccJerkStd-XYZ: Standard deviation of Body Jerk signal in XYZ direction in time domain   
+
+tBodyGyroMean-XYZ: Mean body Gyroscpoe reading in XYZ direction in time domain   
+tBodyGyroStd-XYZ: Standard deviation of Gyroscope reading in XYZ direction in time domain   
+
+tBodyGyroJerkMean-XYZ: Mean Gyro Jerk signal in XYZ direction in time domain   
+tBodyGyroJerkStd-SYZ: Standard deviation of Gyro Jerk signal in XYZ direction in time domain   
+
+tBodyAccMagMean: Magnitude of mean Body linear acceleartion in time domain   
+tBodyAccMagStd: Magnitude of standard deviation of Body Linear acceleration in time domain   
+
+tGravityAccMagMean: Magnitude of mean gravitational acceleration in time domain   
+tGravityAccStd: Magnitude of standard deviation of gravitational acceleration in time domain   
+
+tBodyAccJerkMagMean: Magnitude of mean Body Jerk Signal in time domain    
+tBodyAccJerkMagStd: Magnitude of standard deviation of Body Jerk Signal in time domain    
+
+tBodyGyroMagMean: Magnitude of mean gyroscope reading in time domain    
+tBodyGyroMagStd: Magnitude of standard deviation of gyroscope reading in time domain   
+
+tBodyGyroJerkMagMean: Magnitude of mean Gyroscope Jerk signal in time domain   
+tBodyGyroJerkMagStd: Magnitude of standard deviation of Gyroscope Jerk signal in time domain   
+
+fBodyAccMean-XYZ: Mean Body linear acceleration in XYZ direction in frequency domain  
+fBodyAccStd-XYZ: Standard deviation of linear acceleration in XYZ direction in frequency domain  
+
+fGravityAccMean-XYZ: Mean gravitational acceleration in XYZ direction in frequency domain  
+fGravityAccStd-XYZ: Standard deviation of gravitational acceleration in XYZ direction in frequency domain  
+
+fBodyAccJerkMean-XYZ: Mean Body Jerk signal in XYZ direction in frequency domain   
+fBodyAccJerkStd-XYZ: Standard deviation of Body Jerk signal in XYZ direction in frequency domain   
+
+fBodyGyroMean-XYZ: Mean body Gyroscpoe reading in XYZ direction in frequency domain   
+fBodyGyroStd-XYZ: Standard deviation of Gyroscope reading in XYZ direction in frequency domain   
+
+fBodyGyroJerkMean-XYZ: Mean Gyro Jerk signal in XYZ direction in frequency domain   
+fBodyGyroJerkStd-SYZ: Standard deviation of Gyro Jerk signal in XYZ direction in frequency domain   
+
+fBodyAccMagMean: Magnitude of mean Body linear acceleartion in frequency domain   
+fBodyAccMagStd: Magnitude of standard deviation of Body Linear acceleration in frequency domain   
+
+fGravityAccMagMean: Magnitude of mean gravitational acceleration in frequency domain   
+fGravityAccStd: Magnitude of standard deviation of gravitational acceleration in frequency domain   
+
+fBodyAccJerkMagMean: Magnitude of mean Body Jerk Signal in frequency domain    
+fBodyAccJerkMagStd: Magnitude of standard deviation of Body Jerk Signal in frequency domain    
+
+fBodyGyroMagMean: Magnitude of mean gyroscope reading in frequency domain    
+fBodyGyroMagStd: Magnitude of standard deviation of gyroscope reading in frequency domain   
+
+fBodyGyroJerkMagMean: Magnitude of mean Gyroscope Jerk signal in frequency domain   
+fBodyGyroJerkMagStd: Magnitude of standard deviation of Gyroscope Jerk signal in frequency domain   
+
+
+
+##Description of variables of "data_sum""
+The variables are the same as for "data" (with same units), but they were aggregated: for each variable and subject, the mean of each variable is computed.

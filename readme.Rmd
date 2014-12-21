@@ -1,0 +1,10 @@
+---
+title: "ReadMe"
+author: "Alex Noll"
+date: "Tuesday, December 09, 2014"
+output: html_document
+---
+This Repo contains two important files:
+
+        - "run_analysis.r": this file downloads the data and does all the analysis
+        - "CodeBook.Rmd": this is the Code Book and is a mark down file; it describes the variables and all steps that have been performed to obtain the tidy data
